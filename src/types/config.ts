@@ -11,8 +11,15 @@ export interface SiteConfig {
   // Contact and legal
   contact: {
     email: string;
+    phone?: string;
     company: string;
     address: string;
+  };
+
+  social?: {
+    facebook?: string;
+    twitter?: string;
+    instagram?: string;
   };
 
   legal: {

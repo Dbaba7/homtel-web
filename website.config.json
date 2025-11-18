@@ -1,14 +1,18 @@
 {
   "site": {
-    "name": "Minimal Starter",
-    "tagline": "Your Creative Canvas",
-    "description": "A clean, minimal starter template providing the perfect foundation for your next project. Built with modern tools and ready for your creativity.",
-    "ogImage": "/og-image.png",
+    "name": "Homtel Derivative and Suites",
+    "tagline": "Pearl of Adamawa - Luxury Experience in Yola",
+    "description": "Experience luxury and comfort at Homtel Derivative and Suites, the most safe and rated hotel in Yola, Adamawa State. Enjoy world-class amenities, elegant rooms, and exceptional service.",
+    "ogImage": "/images/hero-lobby.png",
     "twitterHandle": "",
     "contact": {
-      "email": "contact@example.com",
-      "company": "Your Company",
-      "address": ""
+      "email": "reservations@hotels.ng",
+      "phone": "+234 703 311 1820",
+      "company": "Homtel Derivative and Suites",
+      "address": "3 Maiduguri Street, Off Army Barracks Road, Jimeta-Yola, Adamawa State"
+    },
+    "social": {
+      "facebook": "@homtelderivativeandsuites"
     },
     "legal": {
       "privacyPolicy": "/privacy",
@@ -16,6 +20,6 @@
     }
   },
   "theme": {
-    "defaultTheme": "dark"
+    "defaultTheme": "light"
   }
 }
