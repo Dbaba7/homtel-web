@@ -2,7 +2,11 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useRef } from "react";
 
-export function Hero() {
+interface HeroProps {
+  onBookNowClick: () => void;
+}
+
+export function Hero({ onBookNowClick }: HeroProps) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -46,16 +50,16 @@ export function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               onClick={() => scrollToSection("about")}
-              className="bg-[#D2691E] hover:bg-[#8B4513] text-white px-8 py-6 text-lg"
+              variant="outline"
+              className="border-2 border-white text-white hover:bg-white hover:text-[#8B4513] px-8 py-6 text-lg"
             >
               DISCOVER MORE
             </Button>
             <Button
-              onClick={() => scrollToSection("rooms")}
-              variant="outline"
-              className="border-2 border-white text-white hover:bg-white hover:text-[#8B4513] px-8 py-6 text-lg"
+              onClick={onBookNowClick}
+              className="bg-[#D2691E] hover:bg-[#8B4513] text-white px-8 py-6 text-lg"
             >
-              VIEW ROOMS
+              BOOK NOW
             </Button>
           </div>
         </motion.div>
