@@ -1,11 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config";
 import { Phone, Mail, Facebook } from "lucide-react";
 
-export function Header() {
+interface HeaderProps {
+  onBookNowClick: () => void;
+}
+
+export function Header({ onBookNowClick }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -16,8 +31,8 @@ export function Header() {
   };
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-background border-b border-border">
-      <div className="bg-[#8B4513] text-white py-2">
+    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-background/80 backdrop-blur-sm shadow-md' : 'bg-background border-b border-border'}`}>
+      <div className={`transition-all duration-300 ${isScrolled ? 'py-1' : 'py-2'} bg-[#8B4513] text-white`}>
         <div className="container mx-auto px-4 flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
             {siteConfig.contact.phone && (
@@ -42,9 +57,9 @@ export function Header() {
       </div>
 
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+        <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-16' : 'h-20'}`}>
           <div className="flex items-center gap-2">
-            <img src="/logo.jpg" alt="Homtel Logo" className="h-14 w-auto" />
+            <img src="/logo.jpg" alt="Homtel Logo" className={`transition-all duration-300 ${isScrolled ? 'h-12' : 'h-14'} w-auto`} />
           </div>
 
           <nav className="hidden lg:flex items-center gap-8">
@@ -66,7 +81,7 @@ export function Header() {
           </nav>
 
           <Button
-            onClick={() => scrollToSection("booking")}
+            onClick={onBookNowClick}
             className="hidden lg:flex bg-[#D2691E] hover:bg-[#8B4513] text-white px-8"
           >
             BOOK NOW
@@ -105,7 +120,7 @@ export function Header() {
             <button onClick={() => scrollToSection("contact")} className="text-left text-foreground hover:text-[#D2691E] transition-colors font-medium">
               Contact
             </button>
-            <Button onClick={() => scrollToSection("booking")} className="bg-[#D2691E] hover:bg-[#8B4513] text-white">
+            <Button onClick={onBookNowClick} className="bg-[#D2691E] hover:bg-[#8B4513] text-white">
               BOOK NOW
             </Button>
           </nav>
